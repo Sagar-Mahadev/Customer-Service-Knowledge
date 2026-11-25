@@ -1,0 +1,250 @@
+/* =========================================================
+   1. CSS VARIABLES — DARK THEME (Default, shadcn-inspired)
+   ========================================================= */
+:root {
+  --bg-app: #09090b;
+  --bg-sidebar: #0c0c0f;
+  --bg-card: #141418;
+  --bg-card-hover: #1b1b21;
+  --bg-input: #18181b;
+  --bg-table-header: #121216;
+
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+
+  --border-color: #27272a;
+  --border-focus: #eab308;
+
+  /* Warm Gold/Amber accent (matches your reference screenshot) */
+  --accent: #eab308;
+  --accent-hover: #ca8a04;
+  --accent-soft: rgba(234, 179, 8, 0.12);
+  --accent-text: #09090b;
+
+  /* Shadow-type depth for Dark Mode */
+  --shadow-card:
+    0 10px 30px -10px rgba(0, 0, 0, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-hover:
+    0 14px 36px -10px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.85);
+}
+
+/* =========================================================
+   2. LIGHT THEME OVERRIDES (Activated via data-theme="light")
+   ========================================================= */
+[data-theme="light"] {
+  --bg-app: #f4f4f5;
+  --bg-sidebar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fafafa;
+  --bg-input: #ffffff;
+  --bg-table-header: #f8fafc;
+
+  --text-primary: #09090b;
+  --text-secondary: #52525b;
+  --text-muted: #71717a;
+
+  --border-color: #e4e4e7;
+  --border-focus: #ca8a04;
+
+  --accent: #eab308;
+  --accent-hover: #ca8a04;
+  --accent-soft: rgba(234, 179, 8, 0.16);
+  --accent-text: #09090b;
+
+  /* Soft elevated shadow for Light Mode */
+  --shadow-card:
+    0 4px 20px -2px rgba(15, 23, 42, 0.07), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 10px 28px -4px rgba(15, 23, 42, 0.12);
+  --shadow-modal: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+/* =========================================================
+   3. GLOBAL RESET & TYPOGRAPHY
+   ========================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* =========================================================
+   4. SHADOW CARDS & LAYOUT SURFACES
+   ========================================================= */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    background-color 0.2s ease;
+}
+
+.card-interactive:hover {
+  box-shadow: var(--shadow-hover);
+  background-color: var(--bg-card-hover);
+}
+
+/* =========================================================
+   5. BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  transition: all 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background-color: var(--bg-card-hover);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.btn-danger {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: rgba(239, 68, 68, 0.16);
+}
+
+/* =========================================================
+   6. FORM INPUTS & LABELS
+   ========================================================= */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--border-focus);
+}
+
+/* =========================================================
+   7. DATA TABLES
+   ========================================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: var(--bg-table-header);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.data-table tbody tr:hover {
+  background-color: var(--bg-card-hover);
+}
+
+/* =========================================================
+   8. MODAL OVERLAY
+   ========================================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  box-shadow: var(--shadow-modal);
+  padding: 24px;
+}
